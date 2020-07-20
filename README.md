@@ -40,16 +40,16 @@
 
 ## :art: 面向对象
 
-- [面向对象思想](https://github.com/Snowstorm0/CSNote/blob/master/notes/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E6%83%B3.md)
-- [设计模式](https://github.com/Snowstorm0/CSNote/blob/master/notes/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E7%9B%AE%E5%BD%95.md)
+- [面向对象思想](https://github.com/Snowstorm0/CSNote/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E6%83%B3.md)
+- [设计模式](https://github.com/Snowstorm0/CSNote/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20-%20%E7%9B%AE%E5%BD%95.md)
 
 ## :floppy_disk: 数据库
 
-- [数据库系统原理](https://github.com/Snowstorm0/CSNote/blob/master/notes/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86.md)
-- [SQL](https://github.com/Snowstorm0/CSNote/blob/master/notes/SQL.md)
+- [数据库系统原理](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86.md)
+- [SQL](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL.md)
 - [Leetcode-Database 题解](https://github.com/Snowstorm0/CSNote/blob/master/notes/LeetCode/Leetcode-Database%20%E9%A2%98%E8%A7%A3.md)
-- [MySQL](https://github.com/Snowstorm0/CSNote/blob/master/notes/MySQL.md)
-- [Redis](https://github.com/Snowstorm0/CSNote/blob/master/notes/Redis.md)
+- [MySQL](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL.md)
+- [Redis](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis.md)
 
 ## :coffee: Java
 
