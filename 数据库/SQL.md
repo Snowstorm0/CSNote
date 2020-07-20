@@ -32,7 +32,7 @@
 
 主键的值不允许修改，也不允许复用（不能将已经删除的主键值赋给新数据行的主键）。
 
-SQL（Structured Query Language)，标准 SQL 由 ANSI 标准委员会管理，从而称为 ANSI SQL。各个 DBMS 都有自己的实现，如 PL/SQL、Transact-SQL 等。
+**SQL（Structured Query Language，结构化查询语言)**，标准 SQL 由 ANSI 标准委员会管理，从而称为 ANSI SQL。各个 DBMS 都有自己的实现，如 PL/SQL、Transact-SQL 等。
 
 SQL 语句不区分大小写，但是数据库表名、列名和值是否区分依赖于具体的 DBMS 以及配置。
 
@@ -71,21 +71,21 @@ CREATE TABLE mytable (
 
 # 三、修改表
 
-添加列
+添加列 add col
 
 ```sql
 ALTER TABLE mytable
 ADD col CHAR(20);
 ```
 
-删除列
+删除列 drop column
 
 ```sql
 ALTER TABLE mytable
 DROP COLUMN col;
 ```
 
-删除表
+删除表 drop table
 
 ```sql
 DROP TABLE mytable;
@@ -93,14 +93,14 @@ DROP TABLE mytable;
 
 # 四、插入
 
-普通插入
+普通插入 insert
 
 ```sql
 INSERT INTO mytable(col1, col2)
 VALUES(val1, val2);
 ```
 
-插入检索出来的数据
+插入检索出来的数据 select ……from
 
 ```sql
 INSERT INTO mytable1(col1, col2)
@@ -108,7 +108,7 @@ SELECT col1, col2
 FROM mytable2;
 ```
 
-将一个表的内容插入到一个新表
+将一个表的内容插入到一个新表 create
 
 ```sql
 CREATE TABLE newtable AS
@@ -116,6 +116,8 @@ SELECT * FROM mytable;
 ```
 
 # 五、更新
+
+update
 
 ```sql
 UPDATE mytable
@@ -125,12 +127,14 @@ WHERE id = 1;
 
 # 六、删除
 
+delete from
+
 ```sql
 DELETE FROM mytable
 WHERE id = 1;
 ```
 
-**TRUNCATE TABLE**   可以清空表，也就是删除所有行。
+**TRUNCATE TABLE**   可以清空表，也就是删除所有行。truncate table
 
 ```sql
 TRUNCATE TABLE mytable;
