@@ -22,9 +22,9 @@
 
 ## :pencil2: 算法
 
-- [剑指 Offer 题解](https://github.com/Snowstorm0/CSNote/blob/master/notes/%E5%89%91%E6%8C%87offer/%E5%89%91%E6%8C%87%20Offer%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md)
+- [剑指 Offer 题解](https://github.com/Snowstorm0/CSNote/blob/master/%E7%AE%97%E6%B3%95/%E5%89%91%E6%8C%87offer/%E5%89%91%E6%8C%87%20Offer%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md)
 - [Leetcode 题解](https://github.com/Snowstorm0/CSNote/blob/master/notes/LeetCode/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md)
-- [算法](https://github.com/Snowstorm0/CSNote/blob/master/notes/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%20-%20%E7%9B%AE%E5%BD%95.md)
+- [算法](https://github.com/Snowstorm0/CSNote/blob/master/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%20-%20%E7%9B%AE%E5%BD%95.md)
 - [笔试面试题库](https://www.nowcoder.com/contestRoom?from=cyc_github)
 
 ## :computer: 操作系统
