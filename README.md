@@ -51,14 +51,6 @@
 - [MySQL](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL.md)
 - [Redis](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis.md)
 
-## :coffee: Java
-
-- [Java 基础](https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20基础.md)
-- [Java 容器](https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20容器.md)
-- [Java 并发](https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20并发.md)
-- [Java 虚拟机](https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20虚拟机.md)
-- [Java I/O](https://github.com/CyC2018/CS-Notes/blob/master/notes/Java%20IO.md)
-
 ## :bulb: 系统设计 
 
 - [系统设计基础](https://github.com/CyC2018/CS-Notes/blob/master/notes/系统设计基础.md)
