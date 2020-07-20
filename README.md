@@ -47,7 +47,7 @@
 
 - [数据库系统原理](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86.md)
 - [SQL](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL.md)
-- [Leetcode-Database 题解](https://github.com/Snowstorm0/CSNote/blob/master/notes/LeetCode/Leetcode-Database%20%E9%A2%98%E8%A7%A3.md)
+- [Leetcode-Database 题解](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/Leetcode-Database%20%E9%A2%98%E8%A7%A3.md)
 - [MySQL](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL.md)
 - [Redis](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis.md)
 
@@ -70,7 +70,7 @@
 
 ## :wrench: 工具 
 
-- [Git](https://github.com/Snowstorm0/CSNote/blob/master/notes/Git.md)
+- [Git](https://github.com/Snowstorm0/CSNote/blob/master/%E5%B7%A5%E5%85%B7/Git.md)
 - [Docker](https://github.com/CyC2018/CS-Notes/blob/master/notes/Docker.md)
 - [构建工具](https://github.com/CyC2018/CS-Notes/blob/master/notes/构建工具.md)
 - [正则表达式](https://github.com/CyC2018/CS-Notes/blob/master/notes/正则表达式.md)
