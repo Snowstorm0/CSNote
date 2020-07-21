@@ -95,7 +95,7 @@ DROP TABLE mytable;
 
 # 四、插入
 
-普通插入 insert
+普通插入 insert into
 
 ```sql
 INSERT INTO mytable(col1, col2)
@@ -110,7 +110,7 @@ SELECT col1, col2
 FROM mytable2;
 ```
 
-将一个表的内容插入到一个新表 create
+将一个表的内容插入到一个新表 create table
 
 ```sql
 CREATE TABLE newtable AS
