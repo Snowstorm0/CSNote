@@ -55,6 +55,8 @@ USE test;
 
 # 二、创建表
 
+create table
+
 ```sql
 CREATE TABLE mytable (
   # int 类型，不为空，自增
@@ -117,7 +119,7 @@ SELECT * FROM mytable;
 
 # 五、更新
 
-update
+**update**
 
 ```sql
 UPDATE mytable
@@ -127,14 +129,14 @@ WHERE id = 1;
 
 # 六、删除
 
-delete from
+**delete from**
 
 ```sql
 DELETE FROM mytable
 WHERE id = 1;
 ```
 
-**TRUNCATE TABLE**   可以清空表，也就是删除所有行。truncate table
+truncate table   可以**清空表**，也就是删除所有行。
 
 ```sql
 TRUNCATE TABLE mytable;
@@ -144,18 +146,18 @@ TRUNCATE TABLE mytable;
 
 # 七、查询
 
-## DISTINCT
+## distinct
 
-相同值只会出现一次。它作用于所有列，也就是说所有列的值都相同才算相同。
+select distinct 用于返回**不重复的值**，**相同值只出现一次**。它作用于所有列，也就是说所有列的值都相同才算相同。
 
 ```sql
 SELECT DISTINCT col1, col2
 FROM mytable;
 ```
 
-## LIMIT
+## limit
 
-限制返回的行数。可以有两个参数，第一个参数为起始行，从 0 开始；第二个参数为返回的总行数。
+**限制返回的行数**。可以有两个参数，第一个参数为起始行，从 0 开始；第二个参数为返回的总行数。
 
 返回前 5 行：
 
@@ -181,8 +183,8 @@ LIMIT 2, 3;
 
 # 八、排序
 
--   **ASC**  ：升序（默认）
--   **DESC**  ：降序
+-   **ASC**  ：升序 ascend（默认）
+-   **DESC**  ：降序 descend 
 
 可以按多个列进行排序，并且为每个列指定不同的排序方式：
 
