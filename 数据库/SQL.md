@@ -14,14 +14,13 @@
 * [十三、分组](#十三分组)
 * [十四、子查询](#十四子查询)
 * [十五、连接](#十五连接)
-* [十六、组合查询](#十六组合查询)
-* [十七、视图](#十七视图)
-* [十八、存储过程](#十八存储过程)
-* [十九、游标](#十九游标)
-* [二十、触发器](#二十触发器)
-* [二十一、事务管理](#二十一事务管理)
-* [二十二、字符集](#二十二字符集)
-* [二十三、权限管理](#二十三权限管理)
+* [十六、视图](#十六视图)
+* [十七、存储过程](#十七存储过程)
+* [十八、游标](#十八游标)
+* [十九、触发器](#[十九触发器)
+* [二十、事务管理](#二十事务管理)
+* [二十一、字符集](#二十一字符集)
+* [二十二、权限管理](#二十二权限管理)
 * [参考资料](#参考资料)
 <!-- GFM-TOC -->
 
@@ -179,6 +178,26 @@ LIMIT 0, 5;
 SELECT *
 FROM mytable
 LIMIT 2, 3;
+```
+
+## 组合查询
+
+**UNION(union，并集)**:返回两个集合的并集。默认会去除相同行，如果需要保留相同行，使用 **UNION ALL**。每个查询必须包含相同的列、表达式和聚集函数。只能包含一个 ORDER BY 子句，并且必须位于语句的最后。
+
+**INTERSECT(intersect，交集)**:返回两个集合的交集。
+
+**EXCEPT(except，差集)**:比较两个查询的结果，返回左侧查询集合中不包含左右集合交集部分的非重复行（第一个表有，第二个表无）。
+
+使用   UNION   来组合两个查询：
+
+```sql
+SELECT col
+FROM mytable
+WHERE col = 1
+UNION
+SELECT col
+FROM mytable
+WHERE col =2;
 ```
 
 # 八、排序
@@ -531,31 +550,11 @@ orders 表：
 | 3 | c | 4 |
 | 2 | b | Null |
 
-# 十六、组合查询
+# 十六、视图
 
-使用   **UNION**   来组合两个查询，如果第一个查询返回 M 行，第二个查询返回 N 行，那么组合查询的结果一般为 M+N 行。
+**create view**。**视图是虚拟的表**，本身不包含数据，也就不能对其进行索引操作。
 
-每个查询必须包含相同的列、表达式和聚集函数。
-
-默认会去除相同行，如果需要保留相同行，使用 UNION ALL。
-
-只能包含一个 ORDER BY 子句，并且必须位于语句的最后。
-
-```sql
-SELECT col
-FROM mytable
-WHERE col = 1
-UNION
-SELECT col
-FROM mytable
-WHERE col =2;
-```
-
-# 十七、视图
-
-视图是虚拟的表，本身不包含数据，也就不能对其进行索引操作。
-
-对视图的操作和对普通表的操作一样。
+**对视图的操作和对普通表的操作一样**。
 
 视图具有如下好处：
 
@@ -571,9 +570,9 @@ FROM mytable
 WHERE col5 = val;
 ```
 
-# 十八、存储过程
+# 十七、存储过程
 
-存储过程可以看成是对一系列 SQL 操作的批处理。
+存储过程可以看成是对**一系列 SQL 操作的批处理**。
 
 使用存储过程的好处：
 
@@ -581,11 +580,15 @@ WHERE col5 = val;
 - 代码复用；
 - 由于是预先编译，因此具有很高的性能。
 
-命令行中创建存储过程需要自定义分隔符，因为命令行是以 ; 为结束符，而存储过程中也包含了分号，因此会错误把这部分分号当成是结束符，造成语法错误。
+命令行中创建存储过程需要自定义**分隔符(delimiter)**，因为命令行是以 ; 为结束符，而存储过程中也包含了分号，因此会错误把这部分分号当成是结束符，造成语法错误。
 
 包含 in、out 和 inout 三种参数。
 
-给变量赋值都需要用 select into 语句。
+- IN 输入参数：表示调用者向过程传入值（传入值可以是字面量或变量）
+- OUT 输出参数：表示过程向调用者传出值(可以返回多个值)（传出值只能是变量）
+- INOUT 输入输出参数：既表示调用者向过程传入值，又表示过程向调用者传出值（值只能是变量）
+
+给**变量赋值都需要用 select into 语句**。
 
 每次只能给一个变量赋值，不支持集合的操作。
 
@@ -609,18 +612,18 @@ call myprocedure(@ret);
 select @ret;
 ```
 
-# 十九、游标
+# 十八、游标
 
-在存储过程中使用游标可以对一个结果集进行移动遍历。
+**declare……cursor**。在存储过程中使用游标可以对一个结果集进**行移动**遍历。
 
 游标主要用于交互式应用，其中用户需要对数据集中的任意行进行浏览和修改。
 
 使用游标的四个步骤：
 
-1. 声明游标，这个过程没有实际检索出数据；
-2. 打开游标；
-3. 取出数据；
-4. 关闭游标；
+1. **声明**游标，这个过程没有实际检索出数据；
+2. **打开**游标；
+3. **取出数据**；
+4. **关闭**游标；
 
 ```sql
 delimiter //
@@ -645,13 +648,14 @@ create procedure myprocedure(out ret int)
  delimiter ;
 ```
 
-# 二十、触发器
+# 十九、触发器
 
-触发器会在某个表执行以下语句时而自动执行：DELETE、INSERT、UPDATE。
+**create trigger**。触发器会在某个表执行以下语句时而自动执行：**INSERT、UPDATE、DELETE**。
 
-触发器必须指定在语句执行之前还是之后自动执行，之前执行使用 BEFORE 关键字，之后执行使用 AFTER 关键字。BEFORE 用于数据验证和净化，AFTER 用于审计跟踪，将修改记录到另外一张表中。
+触发器必须指定在语句执行之前还是之后自动执行，之前执行使用 BEFORE (**before**)关键字，之后执行使用 AFTER (**after**)关键字。BEFORE 用于**数据验证和净化**，AFTER 用于**审计跟踪**，将修改记录到另外一张表中。
 
-INSERT 触发器包含一个名为 NEW 的虚拟表。
+- INSERT 触发器包含一个名为 NEW  (new) 的虚拟表。
+
 
 ```sql
 CREATE TRIGGER mytrigger AFTER INSERT ON mytable
@@ -660,28 +664,30 @@ FOR EACH ROW SELECT NEW.col into @result;
 SELECT @result; -- 获取结果
 ```
 
-DELETE 触发器包含一个名为 OLD 的虚拟表，并且是只读的。
+- DELETE 触发器包含一个名为 OLD(**old**) 的虚拟表，并且是**只读**的。
 
-UPDATE 触发器包含一个名为 NEW 和一个名为 OLD 的虚拟表，其中 NEW 是可以被修改的，而 OLD 是只读的。
+
+- UPDATE 触发器包含一个名为 NEW (new) 和一个名为 OLD(old)  的虚拟表，其中 NEW 是可以被修改的，而 OLD 是只读的。
+
 
 MySQL 不允许在触发器中使用 CALL 语句，也就是不能调用存储过程。
 
-# 二十一、事务管理
+# 二十、事务管理
 
 基本术语：
 
-- 事务（transaction）指一组 SQL 语句；
-- 回退（rollback）指撤销指定 SQL 语句的过程；
-- 提交（commit）指将未存储的 SQL 语句结果写入数据库表；
-- 保留点（savepoint）指事务处理中设置的临时占位符（placeholder），你可以对它发布回退（与回退整个事务处理不同）。
+- **事务（transaction）**指一组 SQL 语句；
+- **回退（rollback）**指撤销指定 SQL 语句的过程；
+- **提交（commit）**指将未存储的 SQL 语句结果**写入数据库表**；
+- **保留点（savepoint）**设置保存点，并和rollback结合使用，实现**回滚到指定保存点**。（与回退整个事务处理不同）。
 
 不能回退 SELECT 语句，回退 SELECT 语句也没意义；也不能回退 CREATE 和 DROP 语句。
 
-MySQL 的事务提交默认是隐式提交，每执行一条语句就把这条语句当成一个事务然后进行提交。当出现 START TRANSACTION 语句时，会关闭隐式提交；当 COMMIT 或 ROLLBACK 语句执行后，事务会自动关闭，重新恢复隐式提交。
+MySQL 的事务提交默认是**隐式提交**，**每执行一条语句就把这条语句当成一个事务然后进行提交**。当出现 START TRANSACTION (**start transaction**)语句时，会关闭隐式提交；当 COMMIT 或 ROLLBACK 语句执行后，事务会自动关闭，重新恢复隐式提交。
 
 设置 autocommit 为 0 可以取消自动提交；autocommit 标记是针对每个连接而不是针对服务器的。
 
-如果没有设置保留点，ROLLBACK 会回退到 START TRANSACTION 语句处；如果设置了保留点，并且在 ROLLBACK 中指定该保留点，则会回退到该保留点。
+如果没有设置保留点，**ROLLBACK 会回退到 START TRANSACTION** 语句处；如果设置了保留点，并且在 ROLLBACK 中指定该保留点，则会回退到该保留点。
 
 ```sql
 START TRANSACTION
@@ -693,13 +699,15 @@ ROLLBACK TO delete1
 COMMIT
 ```
 
-# 二十二、字符集
+# 二十一、字符集
+
+**character set**。一个**字符集（character set）**对应了一个默认的**校验规则（collation）**，用于指定数据集是如何排序的，以及字符串的比对规则。
 
 基本术语：
 
 - 字符集为字母和符号的集合；
 - 编码为某个字符集成员的内部表示；
-- 校对字符指定如何比较，主要用于排序和分组。
+- 校对字符指定如何比较，主要用于**排序和分组**。
 
 除了给表指定字符集和校对外，也可以给列指定：
 
@@ -717,16 +725,16 @@ FROM mytable
 ORDER BY col COLLATE latin1_general_ci;
 ```
 
-# 二十三、权限管理
+# 二十二、权限管理
 
-MySQL 的账户信息保存在 mysql 这个数据库中。
+**use mysql**。MySQL 的账户信息保存在 **mysql 这个数据库中**。
 
 ```sql
 USE mysql;
 SELECT user FROM user;
 ```
 
-**创建账户**  
+**创建账户**  create user
 
 新创建的账户没有任何权限。
 
@@ -734,25 +742,25 @@ SELECT user FROM user;
 CREATE USER myuser IDENTIFIED BY 'mypassword';
 ```
 
-**修改账户名**  
+**修改账户名**   rename user
 
 ```sql
 RENAME USER myuser TO newuser;
 ```
 
-**删除账户**  
+**删除账户**  drop user
 
 ```sql
 DROP USER myuser;
 ```
 
-**查看权限**  
+**查看权限**  show grants for
 
 ```sql
 SHOW GRANTS FOR myuser;
 ```
 
-**授予权限**  
+**授予权限**  grant ……to
 
 账户用 username@host 的形式定义，username@% 使用的是默认主机名。
 
@@ -760,13 +768,13 @@ SHOW GRANTS FOR myuser;
 GRANT SELECT, INSERT ON mydatabase.* TO myuser;
 ```
 
-**删除权限**  
+**删除权限**  grant/revoke
 
-GRANT 和 REVOKE 可在几个层次上控制访问权限：
+GRANT (grant)和 REVOKE (revoke)可在几个层次上控制访问权限：
 
 - 整个服务器，使用 GRANT ALL 和 REVOKE ALL；
-- 整个数据库，使用 ON database.\*；
-- 特定的表，使用 ON database.table；
+- 整个数据库，使用 **ON database.\***；
+- 特定的表，使用 **ON database.table**；
 - 特定的列；
 - 特定的存储过程。
 
@@ -774,17 +782,15 @@ GRANT 和 REVOKE 可在几个层次上控制访问权限：
 REVOKE SELECT, INSERT ON mydatabase.* FROM myuser;
 ```
 
-**更改密码**  
+**更改密码**  set password for
 
-必须使用 Password() 函数进行加密。
+必须使用 **Password() 函数**进行加密。
 
 ```sql
 SET PASSWROD FOR myuser = Password('new_password');
 ```
 
-# 参考资料
 
-- BenForta. SQL 必知必会 [M]. 人民邮电出版社, 2013.
 
 
 
