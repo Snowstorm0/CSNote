@@ -28,8 +28,8 @@
 * [六、键的过期时间](#六键的过期时间)
 * [七、数据淘汰策略](#七数据淘汰策略)
 * [八、持久化](#八持久化)
-    * [RDB 持久化](#1. **RDB 快照**(Relational Database)：)
-    * [AOF 持久化](#2. **AOF 日志**(append only file))
+    * [1. RDB 快照(Relational Database)：](#1. RDB 快照(Relational Database)：)
+    * [2. AOF 日志(append only file)](#2. AOF 日志(append only file))
 * [九、事务](#九事务)
 * [十、事件](#十事件)
     * [文件事件](#文件事件)
@@ -379,7 +379,7 @@ Redis 4.0 引入了 volatile-lfu 和 allkeys-lfu 淘汰策略，LFU 策略通过
 
 Redis 是内存型数据库，为了保证数据在断电后不会丢失，需要将内存中的数据持久化到硬盘上。
 
-### 1. **RDB 快照**(Relational Database)：
+### 1. RDB 快照(Relational Database)：
 
 通过拍摄快照方式进行数据的持久化，将某个时间节点的数据存储到一个**rdb文件**中，当再次启动redis服务时，会从这个rdb文件加载数据。
 
@@ -397,7 +397,7 @@ Redis 是内存型数据库，为了保证数据在断电后不会丢失，需�
 
 　　获取 redis 的安装目录可以使用 config get dir 命令。
 
-### 2. **AOF 日志**(append only file)
+### 2. AOF 日志(append only file)
 
 以独立日志的方式将**写命令**添加到 AOF 文件的末尾。写入的内容直接是文本协议格式，重启时再重新执行AOF文件中的命令达到恢复数据的目的，解决了数据持久化实时性问题。
 
