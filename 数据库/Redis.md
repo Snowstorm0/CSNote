@@ -242,10 +242,6 @@ dict内部是一个**二维数组**，包含**两个hashtable**。
 
 ![img](https://img2018.cnblogs.com/blog/1779907/201908/1779907-20190831230520901-526181121.png)
 
-
-
-![image-20200801010740549](C:\Users\zblz2\AppData\Roaming\Typora\typora-user-images\image-20200801010740549.png)
-
 从哈希表节点结构dictEntry中可以看到，每一个节点都有一个指向下一个dictEntry的指针，说明Redis中主要通过使用**链表法**解决哈希冲突，即**每一个hashtable中存储的是一个链表**，表中存储指向链表头部元素的指针。
 
 ![img](https://img2018.cnblogs.com/blog/1779907/201908/1779907-20190831230546517-369693993.png)
@@ -443,7 +439,7 @@ Redis 服务器是一个事件驱动程序。
 
 Redis 基于 **Reactor** 模式开发了自己的网络事件处理器，使用 **I/O 多路复用程序**来同时监听多个套接字，并将到达的事件传送给**文件事件分派器**，分派器会根据套接字产生的事件类型调用相应的**事件处理器**。
 
-![image-20200801010256473](C:\Users\zblz2\AppData\Roaming\Typora\typora-user-images\image-20200801010256473.png)
+![img](https://upload-images.jianshu.io/upload_images/10118224-e1bbee793cf4b153.png)
 
 尽管多个文件事件可能会并发的出现，但I/O多路复用程序总是会将所有产生的事件socket都放到一个**队列**中，然后通过这个队列，以**有序**，**同步**，每次**一个**socket的方式向**文件事件分派器**传送。当上一个socket处理完毕后（该socket为事件所关联的**事件处理器**执行完毕），I/O多路复用程序才会继续向文件事件分派器传送下一个socket。
 
