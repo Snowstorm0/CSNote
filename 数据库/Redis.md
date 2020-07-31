@@ -244,6 +244,8 @@ dict内部是一个**二维数组**，包含**两个hashtable**。
 
 
 
+![image-20200801010740549](C:\Users\zblz2\AppData\Roaming\Typora\typora-user-images\image-20200801010740549.png)
+
 从哈希表节点结构dictEntry中可以看到，每一个节点都有一个指向下一个dictEntry的指针，说明Redis中主要通过使用**链表法**解决哈希冲突，即**每一个hashtable中存储的是一个链表**，表中存储指向链表头部元素的指针。
 
 ![img](https://img2018.cnblogs.com/blog/1779907/201908/1779907-20190831230546517-369693993.png)
