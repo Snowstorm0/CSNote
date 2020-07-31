@@ -1,4 +1,5 @@
 <!-- GFM-TOC -->
+
 * [一、概述](#一概述)
 * [二、数据类型](#二数据类型)
     * [STRING](#string)
@@ -47,9 +48,9 @@
 
 # 一、概述
 
-Redis（Remote Dictionary Server )，即远程字典服务，Redis 是速度非常快的非关系型（NoSQL）内存键值数据库，可以存储**键和五种不同类型的值**之间的映射。
+Redis（Remote Dictionary Server )，即**远程字典服务**，Redis 是速度非常快的非关系型（NoSQL）内存键值数据库，可以存储**键和五种不同类型的值**之间的映射。
 
-**键的类型只能为字符串**，值支持五种数据类型：**字符串、列表、集合、散列表、有序集合**。
+键的类型只能为**string**，值支持五种数据类型：**string、list、set、hash、zset(sorted set：有序集合)**。
 
 Redis 支持很多特性，例如将内存中的数据持久化到硬盘中，使用复制来扩展读性能，使用分片来扩展写性能。
 
@@ -57,11 +58,11 @@ Redis 支持很多特性，例如将内存中的数据持久化到硬盘中，�
 
 | 数据类型 | 可以存储的值 | 操作 |
 | :--: | :--: | :--: |
-| STRING | 字符串、整数或者浮点数 | 对整个字符串或者字符串的其中一部分执行操作</br> 对整数和浮点数执行自增或者自减操作 |
-| LIST | 列表 | 从两端压入或者弹出元素 </br> 对单个或者多个元素进行修剪，</br> 只保留一个范围内的元素 |
-| SET | 无序集合 | 添加、获取、移除单个元素</br> 检查一个元素是否存在于集合中</br> 计算交集、并集、差集</br> 从集合里面随机获取元素 |
-| HASH | 包含键值对的无序散列表 | 添加、获取、移除单个键值对</br> 获取所有键值对</br> 检查某个键是否存在|
-| ZSET | 有序集合 | 添加、获取、删除元素</br> 根据分值范围或者成员来获取元素</br> 计算一个键的排名 |
+| STRING(string) | 字符串、整数或者浮点数 | 对整个字符串或者字符串的其中一部分执行操作</br> 对整数和浮点数执行自增或者自减操作 |
+| LIST(list) | 列表 | 从两端压入或者弹出元素 </br> 对单个或者多个元素进行修剪，</br> 只保留一个范围内的元素 |
+| SET(set) | 无序集合 | 添加、获取、移除单个元素</br> 检查一个元素是否存在于集合中</br> 计算交集、并集、差集</br> 从集合里面随机获取元素 |
+| HASH(hash) | 包含键值对的无序散列表 | 添加、获取、移除单个键值对</br> 获取所有键值对</br> 检查某个键是否存在|
+| ZSET(zset) | 有序集合（包含键值对） | 添加、获取、删除元素</br> 根据分值范围或者成员来获取元素</br> 计算一个键的排名 |
 
 > [What Redis data structures look like](https://redislabs.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-2-what-redis-data-structures-look-like/)
 
@@ -209,117 +210,67 @@ OK
 
 ## 字典
 
-dictht 是一个散列表结构，使用拉链法解决哈希冲突。
+dict是Redis服务器中出现最为频繁的复合型数据结构，除hash使用dict之外，整个Redis数据库中所有的key和value也会组成一个全局字典，还有带过期时间的key集合也是一个字典。
+
+zset集合中存储value和score的映射关系也是通过dict结构实现的。
+
+结构：
 
 ```c
-/* This is our hash table structure. Every dictionary has two of this as we
- * implement incremental rehashing, for the old to the new table. */
+// 哈希表
 typedef struct dictht {
-    dictEntry **table;
-    unsigned long size;
-    unsigned long sizemask;
-    unsigned long used;
+    dictEntry **table;  // 哈希表数组，二维
+    long size;          // 哈希表大小
+    long used;          // 哈希表已有节点数
 } dictht;
-```
-
-```c
+​
+// 哈希表节点
 typedef struct dictEntry {
-    void *key;
-    union {
-        void *val;
-        uint64_t u64;
-        int64_t s64;
-        double d;
-    } v;
-    struct dictEntry *next;
+    void *key;       // 键
+    void *val;       // 值
+    dictEntry *next; // 指向下一个哈希表节点，形成链表
 } dictEntry;
 ```
 
-Redis 的字典 dict 中包含两个哈希表 dictht，这是为了方便进行 rehash 操作。在扩容时，将其中一个 dictht 上的键值对 rehash 到另一个 dictht 上面，完成之后释放空间并交换两个 dictht 的角色。
+dict内部是一个**二维数组**，包含**两个hashtable**。
 
-```c
-typedef struct dict {
-    dictType *type;
-    void *privdata;
-    dictht ht[2];
-    long rehashidx; /* rehashing not in progress if rehashidx == -1 */
-    unsigned long iterators; /* number of iterators currently running */
-} dict;
-```
+通常情况下只有一个hashtable是有值的，但是在扩容、缩容时，需要分配新的hashtable，然后进行**渐进式rehash**，此时两个hashtable分别是旧的hashtable和新的hashtable。
 
-rehash 操作不是一次性完成，而是采用渐进方式，这是为了避免一次性执行过多的 rehash 操作给服务器带来过大的负担。
+在进行rehash时，需要申请新数组，然后迁移所有键值对，在rehash结束后，旧的hashtable被删除，新的hashtable取而代之。这是一个**时间复杂度为O(n)**的操作，所以对于大字典的扩容需要耗费一定时间。为避免阻塞，Redis使用渐进式rehash，多次、渐进地完成迁移，以避免集中式rehash带来的庞大计算量。
 
-渐进式 rehash 通过记录 dict 的 rehashidx 完成，它从 0 开始，然后每执行一次 rehash 都会递增。例如在一次 rehash 中，要把 dict[0] rehash 到 dict[1]，这一次会把 dict[0] 上 table[rehashidx] 的键值对 rehash 到 dict[1] 上，dict[0] 的 table[rehashidx] 指向 null，并令 rehashidx++。
+![img](https://img2018.cnblogs.com/blog/1779907/201908/1779907-20190831230520901-526181121.png)
 
-在 rehash 期间，每次对字典执行添加、删除、查找或者更新操作时，都会执行一次渐进式 rehash。
 
-采用渐进式 rehash 会导致字典中的数据分散在两个 dictht 上，因此对字典的查找操作也需要到对应的 dictht 去执行。
 
-```c
-/* Performs N steps of incremental rehashing. Returns 1 if there are still
- * keys to move from the old to the new hash table, otherwise 0 is returned.
- *
- * Note that a rehashing step consists in moving a bucket (that may have more
- * than one key as we use chaining) from the old to the new hash table, however
- * since part of the hash table may be composed of empty spaces, it is not
- * guaranteed that this function will rehash even a single bucket, since it
- * will visit at max N*10 empty buckets in total, otherwise the amount of
- * work it does would be unbound and the function may block for a long time. */
-int dictRehash(dict *d, int n) {
-    int empty_visits = n * 10; /* Max number of empty buckets to visit. */
-    if (!dictIsRehashing(d)) return 0;
+从哈希表节点结构dictEntry中可以看到，每一个节点都有一个指向下一个dictEntry的指针，说明Redis中主要通过使用**链表法**解决哈希冲突，即**每一个hashtable中存储的是一个链表**，表中存储指向链表头部元素的指针。
 
-    while (n-- && d->ht[0].used != 0) {
-        dictEntry *de, *nextde;
+![img](https://img2018.cnblogs.com/blog/1779907/201908/1779907-20190831230546517-369693993.png)
 
-        /* Note that rehashidx can't overflow as we are sure there are more
-         * elements because ht[0].used != 0 */
-        assert(d->ht[0].size > (unsigned long) d->rehashidx);
-        while (d->ht[0].table[d->rehashidx] == NULL) {
-            d->rehashidx++;
-            if (--empty_visits == 0) return 1;
-        }
-        de = d->ht[0].table[d->rehashidx];
-        /* Move all the keys in this bucket from the old to the new hash HT */
-        while (de) {
-            uint64_t h;
+### rehash过程
 
-            nextde = de->next;
-            /* Get the index in the new hash table */
-            h = dictHashKey(d, de->key) & d->ht[1].sizemask;
-            de->next = d->ht[1].table[h];
-            d->ht[1].table[h] = de;
-            d->ht[0].used--;
-            d->ht[1].used++;
-            de = nextde;
-        }
-        d->ht[0].table[d->rehashidx] = NULL;
-        d->rehashidx++;
-    }
+**1.为字典分配空间**
+假设字典中两个hashtable分别为h[0]和h[1]，数据存储在h[0]中。在执行rehash之前，需要**为h[1]分配空间**，这个hashtable的大小取决于需要执行的操作和当前h[0]包含键值对数量即h[0].used：
 
-    /* Check if we already rehashed the whole table... */
-    if (d->ht[0].used == 0) {
-        zfree(d->ht[0].table);
-        d->ht[0] = d->ht[1];
-        _dictReset(&d->ht[1]);
-        d->rehashidx = -1;
-        return 0;
-    }
+- 扩展操作：h[1]大小为第一个大于等于h[0].used*2的2的n次方幂
 
-    /* More to rehash... */
-    return 1;
-}
-```
+- 收缩操作：h[1]大小为第一个大于等于h[0].used的2的n次方幂
+
+
+**2.执行rehash**
+将保存在**h[0]中的键值对rehash到h[1]上**，rehash指重新计算键的hash值和索引值，然后将键值对放置在h[1]的指定索引位置上
+
+**3.释放空间**
+所有键值对迁移完成之后，h[0]变成空表，此时**释放h[0]**，然后将h[1]设置为h[0]，最后在**h[1]位置上新创建一个hashtable**，为下一次rehash做准备。
 
 ## 跳跃表
 
-是有序集合的底层实现之一。
+是有序集合的底层实现之一。跳跃表是基于多指针有序链表实现的，可以看成多个有序链表。在查找时，从上层指针开始查找，找到对应的区间之后再到下一层去查找。
 
-跳跃表是基于多指针有序链表实现的，可以看成多个有序链表。
+插入5的过程：
 
-<div align="center"> <img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/beba612e-dc5b-4fc2-869d-0b23408ac90a.png" width="600px"/> </div><br>
+![img](https://upload-images.jianshu.io/upload_images/6954572-b0b812756bcea352.jpeg)
 
-在查找时，从上层指针开始查找，找到对应的区间之后再到下一层去查找。下图演示了查找 22 的过程。
+下图演示了查找 22 的过程。
 
 <div align="center"> <img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/0ea37ee2-c224-4c79-b895-e131c6805c40.png" width="600px"/> </div><br>
 
@@ -333,23 +284,23 @@ int dictRehash(dict *d, int n) {
 
 ## 计数器
 
-可以对 String 进行自增自减运算，从而实现计数器功能。
+可以对 **String 进行自增自减运算**，从而实现计数器功能。
 
 Redis 这种内存型数据库的读写性能非常高，很适合存储频繁读写的计数量。
 
 ## 缓存
 
-将热点数据放到内存中，设置内存的最大使用量以及淘汰策略来保证缓存的命中率。
+将**热点数据放到内存**中，设置内存的最大使用量以及淘汰策略来保证缓存的命中率。
 
 ## 查找表
 
 例如 DNS 记录就很适合使用 Redis 进行存储。
 
-查找表和缓存类似，也是利用了 Redis 快速的查找特性。但是查找表的内容不能失效，而缓存的内容可以失效，因为缓存不作为可靠的数据来源。
+查找表和缓存类似，也是利用了 **Redis 快速的查找特性**。但是查找表的内容不能失效，而缓存的内容可以失效，因为缓存不作为可靠的数据来源。
 
 ## 消息队列
 
-List 是一个双向链表，可以通过 lpush 和 rpop 写入和读取消息
+List 是一个双向链表，可以通过 **lpush** 和 **rpop** 写入和读取消息
 
 不过最好使用 Kafka、RabbitMQ 等消息中间件。
 
