@@ -262,7 +262,7 @@ dict内部是一个**二维数组**，包含**两个hashtable**。
 
 在进行rehash时，需要申请新数组，然后迁移所有键值对，在rehash结束后，旧的hashtable被删除，新的hashtable取而代之。这是一个**时间复杂度为O(n)**的操作，所以对于大字典的扩容需要耗费一定时间。为避免阻塞，Redis使用渐进式rehash，多次、渐进地完成迁移，以避免集中式rehash带来的庞大计算量。
 
-<div align="center"> <img src="https://img2018.cnblogs.com/blog/1779907/201908/1779907-20190831230520901-526181121.png" width="800" height="200"/> </div><br>
+<div align="center"> <img src="https://img2018.cnblogs.com/blog/1779907/201908/1779907-20190831230520901-526181121.png" width="900" height="250"/> </div><br>
 
 从哈希表节点结构dictEntry中可以看到，每一个节点都有一个指向下一个dictEntry的指针，说明Redis中主要通过使用**链表法**解决哈希冲突，即**每一个hashtable中存储的是一个链表**，表中存储指向链表头部元素的指针。
 
