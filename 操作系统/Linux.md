@@ -1269,6 +1269,3 @@ options 参数主要有 **WNOHANG(w no hang，非阻塞)**和WUNTRACED(w untrace
 
 
 
-
-
-<div align="center"><img width="320px" src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/githubio/公众号二维码-2.png"></img></div>
