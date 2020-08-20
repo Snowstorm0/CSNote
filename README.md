@@ -28,7 +28,7 @@
 - [死锁](https://github.com/Snowstorm0/CSNote/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%AD%BB%E9%94%81.md)
 - [内存管理](https://github.com/Snowstorm0/CSNote/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.md)
 - [设备管理](https://github.com/Snowstorm0/CSNote/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86.md)
-- [链接](https://github.com/Snowstorm0/CSNote/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E9%93%BE%E6%8E%A5.md)
+- [编译和链接](https://github.com/Snowstorm0/CSNote/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%BC%96%E8%AF%91%E5%92%8C%E9%93%BE%E6%8E%A5.md)
 - [Linux](https://github.com/Snowstorm0/CSNote/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux.md)
 
 ## :cloud: 网络 
