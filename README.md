@@ -11,14 +11,11 @@
 
 ## :coffee: 数据结构
 
-- [数组](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E7%BB%84.md)
-- [字符串](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%AD%97%E7%AC%A6%E4%B8%B2.md)
-- [链表](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E9%93%BE%E8%A1%A8.md)
 - [树](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91.md)
 - [堆栈](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A0%86%E6%A0%88.md)
 - [排序](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F.md)
 - [哈希](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%93%88%E5%B8%8C.md)
-- [动态规划](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.md)
+- [算法](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95.md)
 - [高级算法](https://github.com/Snowstorm0/CSNote/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E9%AB%98%E7%BA%A7%E7%AE%97%E6%B3%95.md)
 
 ## :computer: 操作系统
