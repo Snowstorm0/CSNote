@@ -4,10 +4,8 @@
 
 - [基本语言](https://github.com/Snowstorm0/CSNote/blob/master/C%2B%2B/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E8%A8%80.md)
 - [容器和算法](https://github.com/Snowstorm0/CSNote/blob/master/C%2B%2B/%E5%AE%B9%E5%99%A8%E5%92%8C%E7%AE%97%E6%B3%95.md)
-- [类和数据抽象](https://github.com/Snowstorm0/CSNote/blob/master/C%2B%2B/%E7%B1%BB%E5%92%8C%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1.md)
 - [面向对象与泛型编程](https://github.com/Snowstorm0/CSNote/blob/master/C%2B%2B/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B.md)
 - [编译与底层](https://github.com/Snowstorm0/CSNote/blob/master/C%2B%2B/%E7%BC%96%E8%AF%91%E4%B8%8E%E5%BA%95%E5%B1%82.md)
-- [C++11](https://github.com/Snowstorm0/CSNote/blob/master/C%2B%2B/C%2B%2B11.md)
 
 ## :coffee: 数据结构
 
