@@ -12,11 +12,11 @@
 
 ## :art: Java
 
-- [Java IO](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java IO.md)
-- [Java基础](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java 基础.md)
-- [Java容器](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java 容器.md)
-- [Java并发](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java 并发.md)
-- [Java虚拟机](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java 虚拟机.md)
+- [Java IO](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java%20IO.md)
+- [Java基础](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java%20%E5%9F%BA%E7%A1%80.md)
+- [Java容器](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java%20%E5%AE%B9%E5%99%A8.md)
+- [Java并发](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java%20%E5%B9%B6%E5%8F%91.md)
+- [Java虚拟机](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA.md)
 
 ## :coffee: 数据结构
 
