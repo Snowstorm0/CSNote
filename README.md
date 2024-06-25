@@ -3,9 +3,20 @@
 ## :watermelon: C++
 
 - [基本语言](https://github.com/Snowstorm0/CSNote/blob/master/C%2B%2B/%E5%9F%BA%E6%9C%AC%E8%AF%AD%E8%A8%80.md)
+
 - [容器和算法](https://github.com/Snowstorm0/CSNote/blob/master/C%2B%2B/%E5%AE%B9%E5%99%A8%E5%92%8C%E7%AE%97%E6%B3%95.md)
+
 - [面向对象与泛型编程](https://github.com/Snowstorm0/CSNote/blob/master/C%2B%2B/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B8%8E%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B.md)
+
 - [编译与底层](https://github.com/Snowstorm0/CSNote/blob/master/C%2B%2B/%E7%BC%96%E8%AF%91%E4%B8%8E%E5%BA%95%E5%B1%82.md)
+
+## :art: Java
+
+- [Java IO](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java IO.md)
+- [Java基础](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java 基础.md)
+- [Java容器](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java 容器.md)
+- [Java并发](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java 并发.md)
+- [Java虚拟机](https://github.com/Snowstorm0/CSNote/blob/master/Java/Java 虚拟机.md)
 
 ## :coffee: 数据结构
 
@@ -73,3 +84,15 @@
 ## :art: 设计模式
 
 - [设计模式](https://github.com/Snowstorm0/CSNote/blob/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/0%E7%9B%AE%E5%BD%95.md)
+
+
+
+
+
+
+
+**学习更多编程知识，请关注我的公众号：**
+
+[代码的路](https://mp.weixin.qq.com/s/t0t89DFgJ1TEzI4uI5giHg)
+
+<img src="./0other/0/pics/公众号二维码.jpg" width="500px" />
